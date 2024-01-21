@@ -23,6 +23,18 @@ This is a fork of the old [[https://sourceforge.net/projects/cupsemailptr/][cups
 
 Note that this expects [[http://heirloom.sourceforge.net/mailx.html][heirloom mailx]] (formerly known as =nail=) as mailx. At least Ubuntu is no longer shipping this mailx variant as default. Supporting Ubuntu is possible if a Ubuntu user steps up, see [[https://github.com/aardsoft/cups-email/issues/5][this issue]] and [[https://github.com/aardsoft/cups-email/pull/7#issuecomment-762018394][this comment for details.]]
 
+Note this can also use s-nail which seems to work better with modern debian/ubuntu.  If using s-nail, your /etc/cups/mailrc needs to be set with mail settings for the lp account.  For example:
+
+#+BEGIN_SRC sh
+account lp {
+	set smtp-use-starttls
+	set ssl-verify=ignore
+	set smtp=smtp://smtp.gmail.com:587
+	set smtp-auth=login
+	set smtp-auth-user=<username>
+	set smtp-auth-password=<password>
+}
+#+END_SRC
 ** Breaking changes after version 0.1
 
 Improvements after release 0.1 introduced many breaking changes. Please go through the configuration guide below again when upgrading. The breaking changes are mainly:
