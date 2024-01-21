@@ -242,6 +242,10 @@ if echo $_mailx_version|grep -q "GNU Mailutils"; then
     echo "DEBUG:echo '$MailBody' | $Mailx -n -r '$MailFrom' -s '$MailSubject' -a $MAILPDF $MailTo" 1>&2
     _mailx_status=$(echo "$MailBody" | $Mailx -n -r "$MailFrom" -s "$MailSubject" -a $MAILPDF $MailTo 2>&1)
     _mailx_rc=$?
+elif echo $_mailx_version|grep -q "s-nail"; then 
+    echo "DEBUG:echo '$MailBody' | $Mailx -A lp -n -r '$MailFrom' -s '$MailSubject' -a $MAILPDF $MailTo" 1>&2
+    _mailx_status=$(echo "$MailBody" | $Mailx -A lp -n -r "$MailFrom" -s "$MailSubject" -a $MAILPDF $MailTo 2>&1)
+    _mailx_rc=$?
 else
     echo "DEBUG:echo '$MailBody' | $Mailx -n -r '$MailFrom' -s '$MailSubject' -A $MAILPDF $MailTo" 1>&2
     _mailx_status=$(echo "$MailBody" | $Mailx -n -r "$MailFrom" -s "$MailSubject" -A $MAILPDF $MailTo 2>&1)
